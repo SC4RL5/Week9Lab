@@ -1,8 +1,7 @@
 package dataaccess;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 /**
  *
@@ -10,23 +9,10 @@ import java.sql.Statement;
  */
 public class DBUtil {
 
-    public static void closePreparedStatement(Statement ps) {
-        try {
-            if (ps != null) {
-                ps.close();
-            }
-        } catch (SQLException e) {
-            System.out.println(e);
-        }
-    }
+    private static final EntityManagerFactory emf
+            = Persistence.createEntityManagerFactory("UserPU");
 
-    public static void closeResultSet(ResultSet rs) {
-        try {
-            if (rs != null) {
-                rs.close();
-            }
-        } catch (SQLException e) {
-            System.out.println(e);
-        }
+    public static EntityManagerFactory getEmFactory() {
+        return emf;
     }
 }
